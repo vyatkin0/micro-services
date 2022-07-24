@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/MicroFrontendProxy/obj
+/MicroFrontendProxy/bin
+/MicroFrontendProxy.Tests/obj
+/MicroFrontendProxy.Tests/bin
+/.vs
+*.csproj.user

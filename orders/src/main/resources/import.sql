@@ -1,0 +1,1 @@
+INSERT INTO products (name, description) VALUES ('Notebook', 'Notebook IBM'), ('Monitor', 'Monitor LG'), ('Mouse', 'Mouse Logitech'), ('Keyboard', 'Keyboard Logitech'), ('Phone', 'Mobile phone');

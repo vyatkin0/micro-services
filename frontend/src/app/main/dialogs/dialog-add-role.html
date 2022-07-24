@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Add role</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Role Name</mat-label>
+    <input matInput type="text" placeholder="Role Name" [formControl]="nameFormControl">
+    <mat-error *ngIf="nameFormControl.invalid">{{getNameErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <h3>Privileges</h3>
+  <div class="priv-container">
+    <mat-checkbox [(ngModel)]="selected[index]" *ngFor="let priv of data.privileges;let index = index;">{{priv.name}}
+    </mat-checkbox>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="addRole()"
+    [disabled]="!isValid()">Add</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</div>

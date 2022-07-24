@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+
+table {
+  width: 1000px;
+}
+
+.mat-column-status {
+  width: 100px;
+}
+
+.mat-column-client {
+  width: 140px;
+}
+
+.mat-column-amount {
+  width: 100px;
+}
+
+.mat-column-actions {
+  width: 80px;
+  text-align: center;
+}

@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>User information</h1>
+<div mat-dialog-content>
+    <mat-form-field  appearance="outline" class="field-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Name" [formControl]="nameFormControl" >
+        <mat-error>{{getErrorMessage('nameFormControl')}}</mat-error>
+        <mat-hint *ngIf="!nameFormControl">Missing the name</mat-hint>    
+    </mat-form-field>
+    <mat-form-field  appearance="outline" class="field-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="text" placeholder="Email" [formControl]="emailFormControl">
+      <mat-error>{{getErrorMessage('emailFormControl')}}</mat-error>
+      <mat-hint *ngIf="!emailFormControl">Missing the email</mat-hint>  
+    </mat-form-field>
+    <mat-form-field  appearance="outline" class="field-full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" placeholder="First Name" [formControl]="firstNameFormControl">
+        <mat-error>{{getErrorMessage('firstNameFormControl')}}</mat-error>
+        <mat-hint *ngIf="!firstNameFormControl">Missing the first name</mat-hint>    
+    </mat-form-field>
+    <mat-form-field  appearance="outline" class="field-full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" placeholder="Last Name" [formControl]="lastNameFormControl">
+        <mat-error>{{getErrorMessage('lastNameFormControl')}}</mat-error>
+        <mat-hint *ngIf="!lastNameFormControl">Missing the last name</mat-hint>    
+    </mat-form-field>
+    <mat-form-field  appearance="outline" class="field-full-width">
+        <mat-label>Company</mat-label>
+        <input matInput type="text" placeholder="Company" [formControl]="companyFormControl">
+        <mat-error>{{getErrorMessage('companyFormControl')}}</mat-error>
+        <mat-hint *ngIf="!companyFormControl">Missing the company</mat-hint>    
+    </mat-form-field>
+  <div class="error-info" *ngIf="error">{{error}}</div>
+  <div class="result-info" *ngIf="lastResult">User successfully added, id {{lastResult.id}}</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="saveUser()" [disabled]="!isValid()">Save</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</div>

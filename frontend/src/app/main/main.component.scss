@@ -1,0 +1,49 @@
+@use '@angular/material' as mat;
+
+$micro-palette: mat.define-palette(mat.$deep-purple-palette);
+
+main {
+    display:flex;
+}
+
+.app-navbar {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content:space-between;
+    background-color: mat.get-color-from-palette($micro-palette, 50);
+}
+
+.app-navigator {
+    width: 200px;
+    padding: 10px;
+}
+
+.app-navigator a {
+    width: 100%;
+    line-height:45px;
+}
+
+.mat-cell {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.left-navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 20px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.right-navbar {
+  display: flex;
+  justify-content: flex-end;
+}

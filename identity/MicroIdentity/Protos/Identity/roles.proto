@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+option csharp_namespace = "MicroIdentity.Protos";
+
+import "google/protobuf/empty.proto";
+
+service Roles {
+  rpc RolesList (google.protobuf.Empty) returns (UserRolesResponse);
+  rpc PrivilegesList (google.protobuf.Empty) returns (PrivilegesResponse);
+  rpc AssignUserRoles (UserRoleRequest) returns (UserRolesResponse);
+  rpc RemoveUserRoles (UserRoleRequest) returns (UserRolesResponse);
+  rpc GetUserRoles (UserRolesRequest) returns (UserRolesResponse);
+  rpc GetUsersRoles (UsersRolesRequest) returns (UsersRolesResponse);
+  rpc GetRoleUsers (RoleRequest) returns (RoleUsersResponse);
+  rpc RoleCreate (Role) returns (Role);
+  rpc RoleRemove (RoleRequest) returns (Role);
+  rpc RoleInfo (RoleRequest) returns (Role);
+  rpc RoleEdit (Role) returns (Role);
+}
+
+message Privilege
+{
+	int32 id = 1;
+
+	string name = 2;
+}
+
+message Role
+{
+	int32 id = 1;
+
+	int32 userId = 2;
+
+	string name = 3;
+
+	repeated Privilege privileges = 4;
+}
+
+message UserRoleRequest
+{
+	int32 userId = 1;
+
+	repeated int32 roleIds = 2;
+}
+
+message UserRolesResponse
+{
+	int32 userId = 1;
+	
+	repeated Role roles = 2;
+}
+
+message UserRolesRequest
+{
+	int32 userId = 1;
+}
+
+message UsersRolesRequest
+{
+	repeated int32 userIds = 1;
+}
+
+message UsersRolesResponse
+{
+	repeated UserRolesResponse userRoles = 2;
+}
+
+message RoleUsersResponse
+{
+	repeated int32 users = 1;
+}
+message RoleRequest
+{
+	int32 roleId = 1;
+}
+
+message PrivilegesResponse
+{
+	repeated Privilege privileges = 1;
+}

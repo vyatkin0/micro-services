@@ -1,0 +1,32 @@
+<header class="app-navbar">
+   <div class="left-navbar">
+    <div *ngIf="isAdmin">Admin</div>
+   </div>
+   <div class="right-navbar">
+    <button *ngIf ="userInfo" mat-button [matMenuTriggerFor]="userMenu">{{userInfo.firstName}} {{userInfo.lastName}}, {{userInfo.company}} ({{userInfo.id}})</button>
+    <mat-menu #userMenu="matMenu">
+        <button mat-menu-item (click)="manageUser()">User information</button>
+        <button mat-menu-item (click)="changePassword()">Change password</button>
+    </mat-menu>
+    <button mat-icon-button aria-label="Sign out" (click)="logout()" title="Sign out">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</header>
+<main class="page-container">
+   <mat-nav-list role="navigation" class="app-navigator">
+      <mat-list-item>
+         <a routerLink="./start">Start</a>
+      </mat-list-item>
+      <mat-list-item *ngIf="isAdmin">
+         <a routerLink="./users">Users</a>
+      </mat-list-item>
+      <mat-list-item *ngIf="isAdmin">
+         <a routerLink="./roles">Roles</a>
+      </mat-list-item>
+      <mat-list-item *ngIf="isAdmin || hasTenants">
+         <a routerLink="./orders">Orders</a>
+      </mat-list-item>
+   </mat-nav-list>
+   <router-outlet></router-outlet>
+</main>

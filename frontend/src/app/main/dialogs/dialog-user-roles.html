@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>User roles</h1>
+<div mat-dialog-content class="priv-container">
+  <mat-checkbox [(ngModel)]="data.selected[index]" *ngFor="let role of data.roles;let index = index;">{{role.name}}
+  </mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="saveRoles()">Save</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</div>

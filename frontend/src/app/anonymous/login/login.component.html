@@ -1,0 +1,22 @@
+<form [formGroup]="form" class="content">
+
+  <h2 class="micro-head-3 mat-display-3">Sign in</h2>
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" autocomplete="off">
+    <mat-error>{{getErrorMessage('name')}}</mat-error>
+    <mat-hint *ngIf="!form.value.name">Enter your Micro name</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" placeholder="Password" formControlName="password" autocomplete="off">
+    <mat-error>{{getErrorMessage('password')}}</mat-error>
+    <mat-hint *ngIf="!form.value.password">Enter your Micro password</mat-hint>
+  </mat-form-field>
+
+  <mat-error *ngIf="error" >{{error}}</mat-error>
+  <button mat-flat-button color="primary" (click)="login()" [disabled]="!form.valid">Sign in</button>
+  <a routerLink="/signup">Sign up</a>
+</form>

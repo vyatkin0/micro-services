@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Add user</h1>
+<div mat-dialog-content>
+   <mat-form-field  appearance="outline" class="field-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" placeholder="Name" [(ngModel)] = "name" (change) = "lastResult=undefined">
+   </mat-form-field>
+  <div class="error-info" *ngIf="error">{{error}}</div>
+  <div class="result-info" *ngIf="lastResult">User successfully added</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="addUser()" [disabled]="!name">Add</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</div>

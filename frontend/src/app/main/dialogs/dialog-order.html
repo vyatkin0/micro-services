@@ -1,0 +1,45 @@
+<h1 mat-dialog-title *ngIf="id">Edit order {{id}}</h1>
+<h1 mat-dialog-title *ngIf="!id">Add order</h1>
+<div mat-dialog-content>
+  <mat-form-field *ngIf="usersList.length>1" appearance="outline" class="field-full-width">
+    <mat-label>For</mat-label>
+    <mat-select [(value)]="user">
+      <mat-option *ngFor="let user of usersList" [value]="user">{{user?.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field  appearance="outline" class="field-full-width">
+    <mat-label>Customer</mat-label>
+    <input matInput type="text" placeholder="Customer" [(ngModel)] = "customer">
+  </mat-form-field>
+  <mat-form-field  appearance="outline" class="field-full-width">
+    <mat-label>Comment</mat-label>
+    <input matInput type="text" placeholder="Comment" [(ngModel)] = "comment">
+  </mat-form-field>
+  <mat-form-field  appearance="outline" class="field-full-width">
+    <mat-label>Street</mat-label>
+    <input matInput type="text" placeholder="Street" [(ngModel)] = "street">
+  </mat-form-field>
+  <mat-form-field  appearance="outline" class="field-full-width">
+    <mat-label>Zip</mat-label>
+    <input matInput type="text" placeholder="Zip" [(ngModel)] = "zipCode">
+  </mat-form-field>
+  <mat-form-field  appearance="outline" class="field-full-width">
+    <mat-label>Country</mat-label>
+    <input matInput type="text" placeholder="Country" [(ngModel)] = "countryCode">
+  </mat-form-field>
+  <h3>Items</h3>
+  <div class="products-container">
+  <mat-selection-list dense>
+    <mat-list-option *ngFor="let product of products; let index = index;" [(selected)]="selected[index]">
+      {{product.name}}
+    </mat-list-option>
+  </mat-selection-list>
+  </div>
+  <div class="error-info" *ngIf="error">{{error}}</div>
+  <div class="result-info" *ngIf="lastResult">Order successfully added, id {{lastResult.data.id}}</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button *ngIf="data.saveOrder" (click)="saveOrder()" [disabled]="saving || !customer || !street || !zipCode || !countryCode || !selected.includes(true)" >Save</button>
+  <button mat-button *ngIf="data.addOrder" (click)="addOrder()" [disabled]="saving || !customer || !street || !zipCode || !countryCode || !selected.includes(true)">Add</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</div>

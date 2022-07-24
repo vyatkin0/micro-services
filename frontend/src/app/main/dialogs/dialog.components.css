@@ -1,0 +1,18 @@
+.error-info {
+  color: red;
+}
+
+.result-info {
+  color: blue;
+}
+
+.priv-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px; /*fix dialog scrolling*/
+}
+
+.products-container {
+  max-height: 150px;
+  overflow-y: scroll;
+}

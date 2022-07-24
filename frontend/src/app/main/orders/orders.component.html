@@ -1,0 +1,62 @@
+<h2 class="micro-head-3 mat-display-3" id="title">Orders</h2>
+<div class="loading-overlay" *ngIf="loading">
+  <mat-spinner mode="indeterminate"></mat-spinner>&nbsp;&nbsp;Loading orders&hellip;
+</div>
+
+<div *ngIf="!loading">
+  <div *ngIf="ordersDataSource && ordersDataSource.length > 0">
+    <table mat-table [dataSource]="ordersDataSource" aria-describedby="title">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let order"> {{order.data.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef> user </th>
+        <td mat-cell *matCellDef="let order"> {{order.data.user}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef> createdBy </th>
+        <td mat-cell *matCellDef="let order"> {{order.createdBy}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customer">
+        <th mat-header-cell *matHeaderCellDef> customer </th>
+        <td mat-cell *matCellDef="let order"> {{order.data.customer}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> createdAt </th>
+        <td mat-cell *matCellDef="let order"> {{order.createdAt}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="combinedProducts">
+        <th mat-header-cell *matHeaderCellDef>Products</th>
+        <td mat-cell *matCellDef="let order"> {{order.combinedProducts}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let order">
+          <button mat-icon-button aria-label="Edit order" (click)="editOrder(order)" title="Edit order">
+            <mat-icon>edit_outline</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Remove order" (click)="removeOrder(order)" title="Remove order">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="!ordersDataSource || ordersDataSource.length < 1">
+    No orders
+  </div>
+
+  <button mat-flat-button color="primary" (click)="addOrder()" title="Add order">Add</button>
+</div>

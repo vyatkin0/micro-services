@@ -1,0 +1,59 @@
+<form [formGroup]="form" class="content">
+
+  <h2 class="micro-head-3 mat-display-3">Sign up</h2>
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Login Name</mat-label>
+    <input matInput placeholder="Login Name" formControlName="name" required autocomplete="off">
+    <mat-error>{{getErrorMessage('name')}}</mat-error>
+    <mat-hint *ngIf="!form.value.name">Enter your Micro login name</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" placeholder="pat@example.com" formControlName="email" required>
+    <mat-error>{{getErrorMessage('email')}}</mat-error>
+    <mat-hint *ngIf="!form.value.email">Enter your email address</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>First Name</mat-label>
+    <input matInput placeholder="First Name" formControlName="firstName" required >
+    <mat-error>{{getErrorMessage('firstName')}}</mat-error>
+    <mat-hint *ngIf="!form.value.firstName">Enter your first name</mat-hint>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Last Name</mat-label>
+    <input matInput placeholder="Last Name" formControlName="lastName" >
+    <mat-error>{{getErrorMessage('lastName')}}</mat-error>
+    <mat-hint *ngIf="!form.value.lastName">Enter your last name</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Your company</mat-label>
+    <input matInput placeholder="Company" formControlName="company" >
+    <mat-error>{{getErrorMessage('company')}}</mat-error>
+    <mat-hint *ngIf="!form.value.company">Enter your company name</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" placeholder="Password" formControlName="password" autocomplete="off" >
+    <mat-error>{{getErrorMessage('password')}}</mat-error>
+    <mat-hint *ngIf="!form.value.password">Enter your Micro password</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="field-full-width">
+    <mat-label>Confirm password</mat-label>
+    <input matInput type="password" placeholder="Confirm password" formControlName="confirmPassword" autocomplete="off">
+    <mat-error>{{getErrorMessage('confirmPassword')}}</mat-error>
+    <mat-hint *ngIf="!form.value.confirmPassword">Confirm your Micro password</mat-hint>
+  </mat-form-field>
+  
+  <mat-error *ngIf="error">{{error}}</mat-error>
+  <button mat-flat-button color="primary" (click)="register()" [disabled]="!form.valid">Sign up</button>
+
+  <a routerLink="/login">Sign in</a>
+</form>

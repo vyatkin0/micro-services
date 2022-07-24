@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+$micro-palette: mat.define-palette(mat.$blue-grey-palette);
+
+header {
+  background: mat.get-color-from-palette($micro-palette, 500);
+  position: relative;
+  z-index: 9999;
+}
+
+main {
+  margin-top: 30px;
+}
+
+.container {
+  width: 1300px;
+  margin: 0 auto;
+}
+
+.header_content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 48px 0;
+}

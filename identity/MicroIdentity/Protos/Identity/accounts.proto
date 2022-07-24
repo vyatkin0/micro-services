@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+option csharp_namespace = "MicroIdentity.Protos";
+
+import "google/protobuf/empty.proto";
+
+service Accounts {
+  rpc Register (RegisterRequest) returns (LoginInfo);
+  rpc Login (LoginRequest) returns (LoginInfo);
+  rpc Logout (google.protobuf.Empty) returns (StatusResponse);
+  rpc List (google.protobuf.Empty) returns (ListResponse);
+  rpc GetAccessToken (google.protobuf.Empty) returns (AccessToken);
+}
+
+message AppUser
+{
+	int32 id = 1;
+	string name = 2;
+	string email = 4;
+	string firstName = 5;
+	string lastName = 6;
+	string company = 7;
+}
+
+message RegisterRequest
+{
+	string name = 2;
+	string email = 4;
+	string firstName = 5;
+	string lastName = 6;
+	string company = 7;
+	string password = 3;
+}
+
+message LoginRequest
+{
+	string name = 2;
+	string password = 3;
+}
+
+message ListResponse
+{
+	repeated AppUser appUsers = 1;
+}
+
+message AccessToken
+{
+	string aAccessToken = 1;
+}
+
+message TenantInfo
+{
+	int32 id = 1;
+	string name = 2;
+	string company = 7;
+}
+
+message LoginInfo
+{
+	string refreshToken = 1;
+	string accessToken = 2;
+	bool isAdmin = 3;
+	TenantInfo tenant = 4;
+}
+
+message StatusResponse
+{
+	string status = 1;
+}
