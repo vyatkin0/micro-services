@@ -82,31 +82,5 @@ public class App {
     final App server = new App();
     server.start();
     server.blockUntilShutdown();
-
-    /*
-    Session session = HibernateUtil.getSession();
-    Transaction tx = null;
-
-    try {
-      tx = session.beginTransaction();
-      // do some work
-
-      List result = session.createQuery( "from Order" ).list();
-      System.out.println(result.size());
-      for ( Order order : (List<Order>) result ) {
-          System.out.println( "Order (" + order.getId() + ") : " + order.getComment() );
-      }
-
-      tx.commit();
-    }
-
-    catch (Exception e) {
-      if (tx!=null) tx.rollback();
-      e.printStackTrace(); 
-    } finally {
-      session.close();
-    }
-
-    */
   }
 }
