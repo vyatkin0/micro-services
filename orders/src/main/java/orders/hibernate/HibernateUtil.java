@@ -33,21 +33,3 @@ private static final SessionFactory sessionFactory;
         return sessionFactory.openSession();
     }
 }
-
-/**
-private static final SessionFactory sessionFactory;
-    static {
-        try {
-            sessionFactory = new Configuration()
-                    .configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-    public static Session getSession()
-            throws HibernateException {
-        return sessionFactory.openSession();
-    }
-}
- */
