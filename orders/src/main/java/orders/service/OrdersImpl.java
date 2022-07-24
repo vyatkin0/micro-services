@@ -11,8 +11,6 @@ import java.time.Instant;
 import io.grpc.stub.StreamObserver;
 import com.google.protobuf.Int32Value;
 import com.google.protobuf.StringValue;
-// import com.google.rpc.ErrorInfo;
-// import com.google.rpc.Status;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -316,24 +314,6 @@ public class OrdersImpl extends OrdersGrpc.OrdersImplBase {
             StreamObserver<T> responseObserver) {
         Order order = getUserOrderById(session, id, user);
         if (null == order) {
-            /*
-             * Status status = Status.newBuilder()
-             * .setCode(com.google.rpc.Code.NOT_FOUND.getNumber())
-             * .setMessage("Order not found")
-             * .addDetails(Any.pack(ErrorInfo.newBuilder()
-             * .setReason("Invalid Id")
-             * .setDomain("microservices.orders")
-             * .putMetadata("id", String.valueOf(req.getId()))
-             * .build()))
-             * .build();
-             * responseObserver.onError(StatusProto.toStatusRuntimeException(status));
-             */
-            // Metadata.Key<Empty> errorResponseKey =
-            // ProtoUtils.keyForProto(Empty.getDefaultInstance());
-            // Empty errorResponse = Empty.newBuilder().build();
-            // Metadata metadata = new Metadata();
-            // metadata.put(errorResponseKey, errorResponse);
-
             responseObserver.onError(io.grpc.Status.NOT_FOUND
                     .withDescription("Order with id specified not found")
                     .asRuntimeException(null));
