@@ -25,4 +25,4 @@ In the solution's folder execute following commands (ignore error message Error:
 
 In the solution's folder execute `dotnet run` command.
 
-Application is running now on a local grpc-server with url http://localhost:5102
+The service is running now on a local grpc-server with url http://localhost:5102
