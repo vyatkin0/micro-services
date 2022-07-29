@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MicroIdentity.Migrations
 {
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -273,12 +273,12 @@ namespace MicroIdentity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "4da13faf-9745-40e5-ab1a-885d536930cc", "Admin", "ADMIN" },
-                    { 2, "420d587e-a8cd-490b-a5fc-0e9287b1c50e", "User", "USER" },
-                    { 3, "0c4952b2-6991-4701-a43d-8d63c57ab21d", "GetOrder", "GETORDER" },
-                    { 4, "a7058c77-2b0f-4c7b-96c8-6543c87ea9c2", "CreateOrder", "CREATEORDER" },
-                    { 5, "c096a39e-7fe2-4ae3-b4d1-1f219c15f0cd", "DeleteOrder", "DELETEORDER" },
-                    { 6, "5cff2b64-e71a-467b-b3b3-c25238e2d544", "UpdateOrder", "UPDATEORDER" }
+                    { 1, "73c14ff6-84d5-47bc-a38f-6bbdaf5d1e3d", "Admin", "ADMIN" },
+                    { 2, "6de8a4cf-932f-4407-a3ab-5cc52f9f8edf", "User", "USER" },
+                    { 3, "e2228a26-ede2-457a-91cf-a6cc23b0020f", "GetOrder", "GETORDER" },
+                    { 4, "c17092c7-31fc-4562-b85c-d9b3a82ae2f1", "CreateOrder", "CREATEORDER" },
+                    { 5, "f6f3ea16-a945-4063-88be-07eb1c1dbfb2", "DeleteOrder", "DELETEORDER" },
+                    { 6, "c7d43172-6e54-464a-a059-a00920e03e83", "UpdateOrder", "UPDATEORDER" }
                 });
 
             migrationBuilder.CreateIndex(

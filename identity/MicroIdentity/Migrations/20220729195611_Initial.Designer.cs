@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroIdentity.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220723055855_Init")]
-    partial class Init
+    [Migration("20220729195611_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,42 +57,42 @@ namespace MicroIdentity.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "4da13faf-9745-40e5-ab1a-885d536930cc",
+                            ConcurrencyStamp = "73c14ff6-84d5-47bc-a38f-6bbdaf5d1e3d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "420d587e-a8cd-490b-a5fc-0e9287b1c50e",
+                            ConcurrencyStamp = "6de8a4cf-932f-4407-a3ab-5cc52f9f8edf",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "0c4952b2-6991-4701-a43d-8d63c57ab21d",
+                            ConcurrencyStamp = "e2228a26-ede2-457a-91cf-a6cc23b0020f",
                             Name = "GetOrder",
                             NormalizedName = "GETORDER"
                         },
                         new
                         {
                             Id = 4,
-                            ConcurrencyStamp = "a7058c77-2b0f-4c7b-96c8-6543c87ea9c2",
+                            ConcurrencyStamp = "c17092c7-31fc-4562-b85c-d9b3a82ae2f1",
                             Name = "CreateOrder",
                             NormalizedName = "CREATEORDER"
                         },
                         new
                         {
                             Id = 5,
-                            ConcurrencyStamp = "c096a39e-7fe2-4ae3-b4d1-1f219c15f0cd",
+                            ConcurrencyStamp = "f6f3ea16-a945-4063-88be-07eb1c1dbfb2",
                             Name = "DeleteOrder",
                             NormalizedName = "DELETEORDER"
                         },
                         new
                         {
                             Id = 6,
-                            ConcurrencyStamp = "5cff2b64-e71a-467b-b3b3-c25238e2d544",
+                            ConcurrencyStamp = "c7d43172-6e54-464a-a059-a00920e03e83",
                             Name = "UpdateOrder",
                             NormalizedName = "UPDATEORDER"
                         });

@@ -25,8 +25,9 @@ def protocVersion = protobufVersion
 def postgresqlVersion = '42.3.3'
 
 dependencies {
-    runtimeOnly "org.postgresql:postgresql:${postgresqlVersion}"
-    //runtimeOnly 'com.h2database:h2:2.1.214'
+    //runtimeOnly "org.postgresql:postgresql:${postgresqlVersion}"
+    runtimeOnly "com.h2database:h2:2.1.214"
+
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
     implementation "io.jsonwebtoken:jjwt:0.9.1"
