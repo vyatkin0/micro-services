@@ -1,5 +1,6 @@
 # MicroIdentity
 Example of an Identity gRPC service with ASP.NET Core and Microsoft identity platform.
+
 MSSQL Server used as a data storage.
 
 These are generic installation instructions.
