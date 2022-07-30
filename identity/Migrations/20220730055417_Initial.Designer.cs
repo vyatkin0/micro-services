@@ -4,6 +4,7 @@ using MicroIdentity.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroIdentity.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220730055417_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,42 +57,42 @@ namespace MicroIdentity.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "73c14ff6-84d5-47bc-a38f-6bbdaf5d1e3d",
+                            ConcurrencyStamp = "6bd0eac0-8c29-4c53-a460-d1ce8bd1f716",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "6de8a4cf-932f-4407-a3ab-5cc52f9f8edf",
+                            ConcurrencyStamp = "6ca6706b-8a0a-4965-ad9a-7b33b5760729",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "e2228a26-ede2-457a-91cf-a6cc23b0020f",
+                            ConcurrencyStamp = "4991a65d-808f-414e-852e-24b970431316",
                             Name = "GetOrder",
                             NormalizedName = "GETORDER"
                         },
                         new
                         {
                             Id = 4,
-                            ConcurrencyStamp = "c17092c7-31fc-4562-b85c-d9b3a82ae2f1",
+                            ConcurrencyStamp = "26fc3902-8dd6-4ca6-a242-b4c516415a11",
                             Name = "CreateOrder",
                             NormalizedName = "CREATEORDER"
                         },
                         new
                         {
                             Id = 5,
-                            ConcurrencyStamp = "f6f3ea16-a945-4063-88be-07eb1c1dbfb2",
+                            ConcurrencyStamp = "e1c4f13f-b271-46a8-99b8-baab9098853f",
                             Name = "DeleteOrder",
                             NormalizedName = "DELETEORDER"
                         },
                         new
                         {
                             Id = 6,
-                            ConcurrencyStamp = "c7d43172-6e54-464a-a059-a00920e03e83",
+                            ConcurrencyStamp = "92b0903d-2231-49a7-aaaa-a4b00e7d6a8c",
                             Name = "UpdateOrder",
                             NormalizedName = "UPDATEORDER"
                         });

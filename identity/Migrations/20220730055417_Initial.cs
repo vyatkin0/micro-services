@@ -273,12 +273,12 @@ namespace MicroIdentity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "73c14ff6-84d5-47bc-a38f-6bbdaf5d1e3d", "Admin", "ADMIN" },
-                    { 2, "6de8a4cf-932f-4407-a3ab-5cc52f9f8edf", "User", "USER" },
-                    { 3, "e2228a26-ede2-457a-91cf-a6cc23b0020f", "GetOrder", "GETORDER" },
-                    { 4, "c17092c7-31fc-4562-b85c-d9b3a82ae2f1", "CreateOrder", "CREATEORDER" },
-                    { 5, "f6f3ea16-a945-4063-88be-07eb1c1dbfb2", "DeleteOrder", "DELETEORDER" },
-                    { 6, "c7d43172-6e54-464a-a059-a00920e03e83", "UpdateOrder", "UPDATEORDER" }
+                    { 1, "6bd0eac0-8c29-4c53-a460-d1ce8bd1f716", "Admin", "ADMIN" },
+                    { 2, "6ca6706b-8a0a-4965-ad9a-7b33b5760729", "User", "USER" },
+                    { 3, "4991a65d-808f-414e-852e-24b970431316", "GetOrder", "GETORDER" },
+                    { 4, "26fc3902-8dd6-4ca6-a242-b4c516415a11", "CreateOrder", "CREATEORDER" },
+                    { 5, "e1c4f13f-b271-46a8-99b8-baab9098853f", "DeleteOrder", "DELETEORDER" },
+                    { 6, "92b0903d-2231-49a7-aaaa-a4b00e7d6a8c", "UpdateOrder", "UPDATEORDER" }
                 });
 
             migrationBuilder.CreateIndex(

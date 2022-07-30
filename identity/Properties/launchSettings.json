@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "MicroIdentity": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "TOKEN_KEY": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+        "TOKEN_AUDIENCE": "https://github.com/vyatkin0/micro-services",
+        "TOKEN_ISSUER": "https://github.com/vyatkin0/micro-services"
+      }
+    }
+  }
+}
