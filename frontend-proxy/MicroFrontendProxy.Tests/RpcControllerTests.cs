@@ -47,7 +47,7 @@ namespace MicroFrontendProxy.Tests
             JsonResult result = controller.Call(request) as JsonResult;
             Assert.IsNotNull(result);
 
-            LoginInfo info = (result.Value as LoginInfo);
+            LoginInfo info = result.Value as LoginInfo;
 
             RpcRequest logoutRequest = new RpcRequest()
             {
@@ -79,7 +79,7 @@ namespace MicroFrontendProxy.Tests
             JsonResult loginResult = controller.Call(loginRequest) as JsonResult;
             Assert.IsNotNull(loginResult);
 
-            info = (loginResult.Value as LoginInfo);
+            info = loginResult.Value as LoginInfo;
 
             logoutRequest.Headers["authorization"] = info.AccessToken;
 
