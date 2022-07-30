@@ -9,7 +9,7 @@ Edit database connection string in file appsettings.json;
 
 Download and install ASP.NET Core SDK 5.0;
 
-In the solution's folder execute following commands (ignore error message Error: Token key is not specified):
+In the solution's folder execute following commands:
 
 `dotnet restore`
 
