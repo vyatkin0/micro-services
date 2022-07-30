@@ -71,16 +71,16 @@ namespace MicroFrontendProxy.Controllers
                 Google.Protobuf.IMessage message = null;
                 try
                 {
-                    string mesText = request.Message.GetRawText();
+                    string messageText = request.Message.GetRawText();
 
-                    if (!string.IsNullOrEmpty(mesText) && defaultParameter.ParameterType != typeof(Google.Protobuf.WellKnownTypes.Empty))
+                    if (!string.IsNullOrEmpty(messageText) && defaultParameter.ParameterType != typeof(Google.Protobuf.WellKnownTypes.Empty))
                     {
                         PropertyInfo pi = defaultParameter.ParameterType.GetProperty("Parser");
                         object parser = pi.GetValue(defaultParameter, null);
 
                         MethodInfo mi = parser.GetType().GetMethod("ParseJson");
 
-                        message = mi.Invoke(parser, new object[] { mesText }) as Google.Protobuf.IMessage;
+                        message = mi.Invoke(parser, new object[] { messageText }) as Google.Protobuf.IMessage;
                     }
                     else
                         message = new Google.Protobuf.WellKnownTypes.Empty();

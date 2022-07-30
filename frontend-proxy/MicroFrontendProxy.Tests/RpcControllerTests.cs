@@ -3,48 +3,93 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MicroFrontendProxy.Controllers;
-using MicroFrontendProxy.Extensions;
 using MicroFrontendProxy.Models;
 using MicroIdentity.Protos;
+using System.Text.Json;
+using System.Collections.Generic;
 
 namespace MicroFrontendProxy.Tests
 {
     [TestClass]
     public class RpcControllerTests
     {
+        internal readonly IConfiguration config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json").Build();
+
+        internal JsonSerializerOptions options = new JsonSerializerOptions{
+            PropertyNamingPolicy=JsonNamingPolicy.CamelCase
+        };
+
         [TestMethod]
-        public void Call_CorrectParameters_Success()
+        public void CorrectParameters()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json").Build();
-            var controller = new RpcController(config);
-            var testRequest = new
+            RpcController controller = new RpcController(config);
+
+            RpcRequest request = new RpcRequest()
             {
-                Name = "Test",
-                Password = "Pa$$w0rd"
+                Interface = "Accounts",
+                Method = "Register",
+                Service = "Identity",
+                Message = JsonSerializer.SerializeToElement(new
+                {
+                    company = "Test",
+                    email = "test@test.ru",
+                    firstName = "Test",
+                    lastName = "Test",
+                    name = "Test",
+                    password = "Pa$$w0rd"
+                }, options),
             };
 
-            var request = new RpcRequest()
+            JsonResult result = controller.Call(request) as JsonResult;
+            Assert.IsNotNull(result);
+
+            LoginInfo info = (result.Value as LoginInfo);
+
+            RpcRequest logoutRequest = new RpcRequest()
+            {
+                Interface = "Accounts",
+                Method = "Logout",
+                Service = "Identity",
+                Message = JsonSerializer.SerializeToElement(new { }),
+                Headers = new Dictionary<string, string>
+                {
+                    ["authorization"] = info.AccessToken,
+                },
+            };
+
+            JsonResult logoutResult = controller.Call(logoutRequest) as JsonResult;
+            Assert.IsNotNull(logoutResult);
+
+            RpcRequest loginRequest = new RpcRequest()
             {
                 Interface = "accounts",
                 Method = "login",
-                Service = "identity",
-                Message = JsonExtensions.JsonElementFromObject(testRequest)
+                Service = "Identity",
+                Message = JsonSerializer.SerializeToElement(new
+                {
+                    name = "Test",
+                    password = "Pa$$w0rd"
+                }, options),
             };
-            var result = controller.Call(request);
 
-            Assert.AreEqual(typeof(JsonResult), result.GetType());
+            JsonResult loginResult = controller.Call(loginRequest) as JsonResult;
+            Assert.IsNotNull(loginResult);
+
+            info = (loginResult.Value as LoginInfo);
+
+            logoutRequest.Headers["authorization"] = info.AccessToken;
+
+            JsonResult logoutResult2 = controller.Call(logoutRequest) as JsonResult;
+            Assert.IsNotNull(logoutResult2);
         }
 
         [TestMethod]
-        public void Call_IncorrectService_Error()
+        public void WrongService()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json").Build();
-            var controller = new RpcController(config);
-            var registerRequest = new RegisterRequest()
+            RpcController controller = new RpcController(config);
+            RegisterRequest registerRequest = new RegisterRequest()
             {
                 Company = "Test",
                 Email = "test@test.ru",
@@ -53,26 +98,25 @@ namespace MicroFrontendProxy.Tests
                 Name = "Test",
                 Password = "123"
             };
-            var request = new RpcRequest()
+
+            RpcRequest request = new RpcRequest()
             {
                 Interface = "Account",
                 Method = "Register",
                 Service = "Identite",
-                Message = JsonExtensions.JsonElementFromObject(registerRequest)
+                Message = JsonSerializer.SerializeToElement(registerRequest, options),
             };
-            var result = controller.Call(request);
 
-            Assert.AreEqual("Can't find provider", ((BadRequestObjectResult)result).Value.ToString());
+            BadRequestObjectResult result = controller.Call(request) as BadRequestObjectResult;
+
+            Assert.AreEqual("Wrong provider", result?.Value);
         }
 
         [TestMethod]
-        public void Call_IncorrectInterface_Error()
+        public void WrongInterface()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json").Build();
-            var controller = new RpcController(config);
-            var registerRequest = new RegisterRequest()
+            RpcController controller = new RpcController(config);
+            RegisterRequest registerRequest = new RegisterRequest()
             {
                 Company = "Test",
                 Email = "test@test.ru",
@@ -81,26 +125,24 @@ namespace MicroFrontendProxy.Tests
                 Name = "Test",
                 Password = "123"
             };
-            var request = new RpcRequest()
+            RpcRequest request = new RpcRequest()
             {
                 Interface = "Accound",
                 Method = "Register",
-                Service = "Identity",
-                Message = JsonExtensions.JsonElementFromObject(registerRequest)
+                Service = "identity",
+                Message = JsonSerializer.SerializeToElement(registerRequest, options),
             };
-            var result = controller.Call(request);
 
-            Assert.AreEqual("Can't find client", ((BadRequestObjectResult)result).Value.ToString());
+            BadRequestObjectResult result = controller.Call(request) as BadRequestObjectResult;
+
+            Assert.AreEqual("Wrong client", result?.Value);
         }
 
         [TestMethod]
-        public void Call_IncorrectMethod_Error()
+        public void WrongMethod()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json").Build();
-            var controller = new RpcController(config);
-            var registerRequest = new RegisterRequest()
+            RpcController controller = new RpcController(config);
+            RegisterRequest registerRequest = new RegisterRequest()
             {
                 Company = "Test",
                 Email = "test@test.ru",
@@ -109,40 +151,42 @@ namespace MicroFrontendProxy.Tests
                 Name = "Test",
                 Password = "123"
             };
-            var request = new RpcRequest()
+
+            RpcRequest request = new RpcRequest()
             {
-                Interface = "Account",
+                Interface = "Accounts",
                 Method = "Registet",
                 Service = "Identity",
-                Message = JsonExtensions.JsonElementFromObject(registerRequest)
+                Message = JsonSerializer.SerializeToElement(registerRequest, options),
             };
-            var result = controller.Call(request);
 
-            Assert.AreEqual("Couldn't find method", ((BadRequestObjectResult)result).Value.ToString());
+            BadRequestObjectResult result = controller.Call(request) as BadRequestObjectResult;
+
+            Assert.AreEqual("Wrong method", result?.Value);
         }
 
         [TestMethod]
-        public void Call_IncorrectMessage_Error()
+        public void WrongMessage()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json").Build();
-            var controller = new RpcController(config);
-            var loginRequest = new LoginRequest()
+            RpcController controller = new RpcController(config);
+            var loginRequest = new
             {
-                Name = "Test",
-                Password = "123"
+                extra = "",
+                name = "Test",
+                password = "123"
             };
-            var request = new RpcRequest()
+
+            RpcRequest request = new RpcRequest()
             {
-                Interface = "Account",
+                Interface = "Accounts",
                 Method = "Register",
                 Service = "Identity",
-                Message = JsonExtensions.JsonElementFromObject(loginRequest)
+                Message = JsonSerializer.SerializeToElement(loginRequest, options),
             };
-            var result = controller.Call(request);
 
-            Assert.AreEqual("Incorrect message", ((BadRequestObjectResult)result).Value.ToString());
+            BadRequestObjectResult result = controller.Call(request) as BadRequestObjectResult;
+
+            Assert.AreEqual("Wrong message", result?.Value);
         }
     }
 }
