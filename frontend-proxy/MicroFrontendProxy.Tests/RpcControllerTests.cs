@@ -26,6 +26,8 @@ namespace MicroFrontendProxy.Tests
         {
             RpcController controller = new RpcController(config);
 
+            const string firstName = "Test";
+            string lastName = DateTime.UtcNow.Ticks.ToString();
             RpcRequest request = new RpcRequest()
             {
                 Interface = "Accounts",
@@ -34,10 +36,10 @@ namespace MicroFrontendProxy.Tests
                 Message = JsonSerializer.SerializeToElement(new
                 {
                     company = "Test",
-                    email = "test@test.ru",
-                    firstName = "Test",
-                    lastName = "Test",
-                    name = "Test",
+                    email = lastName + "@test.ru",
+                    firstName = firstName,
+                    lastName = lastName,
+                    name = firstName + lastName,
                     password = "Pa$$w0rd"
                 }, options),
             };
