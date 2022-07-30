@@ -71,7 +71,7 @@ namespace MicroFrontendProxy.Tests
                 Service = "Identity",
                 Message = JsonSerializer.SerializeToElement(new
                 {
-                    name = "Test",
+                    name = firstName + lastName,
                     password = "Pa$$w0rd"
                 }, options),
             };
