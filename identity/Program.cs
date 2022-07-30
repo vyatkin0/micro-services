@@ -22,9 +22,6 @@ namespace MicroIdentity
             // Additional configuration is required to successfully run gRPC on macOS.
             // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
 
-            // Add services to the container.
-            builder.Services.AddGrpc();
-
             string connectionString = builder.Configuration.GetConnectionString("MicroIdentity");
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
@@ -45,7 +42,12 @@ namespace MicroIdentity
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
-            builder.Services.AddMicroAuth();
+            if(builder.Environment.EnvironmentName.ToLower() != "dbcontext") {
+                // Add services to the container.
+                builder.Services.AddGrpc();
+
+                builder.Services.AddMicroAuth();
+            }
 
             var app = builder.Build();
 

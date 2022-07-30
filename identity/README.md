@@ -15,10 +15,9 @@ In the solution's folder execute following commands:
 
 `dotnet tool install --global dotnet-ef`
 
-`dotnet ef migrations add Initial --project MicroIdentity.csproj`
+`dotnet ef migrations add Initial --project MicroIdentity.csproj -- --environment dbcontext`
 
-`dotnet ef database update --project MicroIdentity.csproj`
-
+`dotnet ef database update --project MicroIdentity.csproj -- --environment dbcontext`
 `dotnet build`
 
 `dotnet test`
