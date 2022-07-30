@@ -43,13 +43,16 @@ namespace MicroIdentity
                 .AddDefaultTokenProviders();
 
             if(builder.Environment.EnvironmentName.ToLower() != "dbcontext") {
-                // Add services to the container.
+
                 builder.Services.AddGrpc();
 
                 builder.Services.AddMicroAuth();
             }
 
             var app = builder.Build();
+
+            if(builder.Environment.EnvironmentName.ToLower() == "dbcontext")
+                return;
 
             app.UseMicroAuth();
 
