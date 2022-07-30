@@ -1,5 +1,6 @@
 # MicroIdentity
 Example of an Identity gRPC service with ASP.NET Core and Microsoft identity platform.
+
 MSSQL Server used as a data storage.
 
 These are generic installation instructions.
@@ -25,4 +26,4 @@ In the solution's folder execute following commands (ignore error message Error:
 
 In the solution's folder execute `dotnet run` command.
 
-Application is running now on a local web-server with url http://localhost:5102
+The service is running now on a local grpc-server with url http://localhost:5102
