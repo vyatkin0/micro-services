@@ -1,20 +1,21 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# MicroFrontendProxy
+Example of an ASP.NET Core REST-gRPC proxy service that is used to provide access for web applications to the system infrastructure.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+These are generic installation instructions.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Edit database connection string in file appsettings.json;
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Download and install ASP.NET Core SDK 6.0;
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+In the solution's folder execute following commands:
+
+`dotnet restore`
+
+`dotnet build`
+
+`dotnet test`
+
+
+In the solution's folder execute `dotnet run --project MicroFrontendProxy` command.
+
+The service is running now on a local grpc-server with url http://localhost:5000

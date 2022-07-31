@@ -7,7 +7,7 @@ These are generic installation instructions.
 
 Edit database connection string in file appsettings.json;
 
-Download and install ASP.NET Core SDK 5.0;
+Download and install ASP.NET Core SDK 6.0;
 
 In the solution's folder execute following commands:
 
