@@ -3,8 +3,6 @@ Example of an ASP.NET Core REST-gRPC proxy service that is used to provide acces
 
 These are generic installation instructions.
 
-Edit database connection string in file appsettings.json;
-
 Download and install ASP.NET Core SDK 6.0;
 
 In the solution's folder execute following commands:
