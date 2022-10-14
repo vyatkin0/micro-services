@@ -24,7 +24,8 @@ namespace MicroIdentity
 
             string connectionString = builder.Configuration.GetConnectionString("MicroIdentity");
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                //options.UseSqlServer(connectionString));
+                options.UseSqlite(connectionString));
 
             builder.Services.AddIdentity<AppUser, AppRole>(options =>
                 {

@@ -19,7 +19,8 @@ namespace MicroIdentity.Infrastructure
 
             var builder = new DbContextOptionsBuilder<AppDbContext>();
             var connectionString = configuration.GetConnectionString("MicroIdentity");
-            builder.UseSqlServer(connectionString);
+            //builder.UseSqlServer(connectionString);
+            builder.UseSqlite(connectionString);
             return new AppDbContext(builder.Options);
         }
     }
