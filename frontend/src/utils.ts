@@ -1,6 +1,6 @@
 import configApi from './configApi';
 
-const apiUrl ="http://localhost:5000"; //return document.getElementsByTagName('base')[0].href;
+const apiUrl ="https://frontend-proxy-zavd5lj5qq-uc.a.run.app"; //return document.getElementsByTagName('base')[0].href;
 
 export interface Tenant {
   id: number;

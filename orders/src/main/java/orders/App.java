@@ -37,7 +37,7 @@ public class App {
 
   private void start() throws IOException {
     /* The port on which the server should run */
-    int port = 5103;
+    int port = 8080;
     server = ServerBuilder.forPort(port)
         .addService(new OrdersImpl())
         .addService(new ProductsImpl())
