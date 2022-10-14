@@ -4,7 +4,7 @@ option csharp_namespace = "MicroOrders.Protos";
 option java_multiple_files = true;
 package orders;
 
-import "protos/orders/products.proto";
+import "Protos/Orders/products.proto";
 import "google/protobuf/wrappers.proto";
 
 service Orders {
