@@ -1,0 +1,20 @@
+gcloud init
+gcloud auth configure-docker
+
+
+dotnet publish -c Release
+docker build --progress=plain -t micro-identity .
+docker tag micro-identity gcr.io/micro-services-365416/identity:latest
+docker push gcr.io/micro-services-365416/identity:latest
+
+
+gradlew installDist
+docker build --progress=plain -t micro-orders .
+docker tag micro-orders gcr.io/micro-services-365416/orders:latest
+docker push gcr.io/micro-services-365416/orders:latest
+
+
+ng build
+docker build --progress=plain -t micro-frontend .
+docker tag micro-frontend gcr.io/micro-services-365416/frontend:latest
+docker push gcr.io/micro-services-365416/frontend:latest
