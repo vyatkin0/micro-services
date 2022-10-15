@@ -28,7 +28,7 @@ namespace MicroFrontendProxy
                 options.AddPolicy(name: _corsPolicy,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:4200")
+                                      builder.WithOrigins("http://localhost:4200", "https://frontend-zavd5lj5qq-uc.a.run.app")
                                       .AllowAnyHeader()
                                       .AllowAnyMethod()
                                       .AllowCredentials();
