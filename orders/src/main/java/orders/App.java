@@ -11,9 +11,6 @@ import java.util.logging.Logger;
 import orders.service.ProductsImpl;
 import orders.service.OrdersImpl;
 
-/**
- * Server that manages startup/shutdown of a {@code Greeter} server.
- */
 public class App {
   private static final Logger logger = Logger.getLogger(App.class.getName());
 
