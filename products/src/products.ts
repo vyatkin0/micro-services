@@ -136,9 +136,7 @@ function create(call, callback) {
 
             callback(null, row);
         });
-    });
-
-    db.close((err) => {
+    }).close((err) => {
         if (err) {
             return console.error(err.message);
         }
@@ -222,9 +220,7 @@ function deleteProduct(call, callback) {
             callback(null, row);
             console.log(`${this.changes} products have been deleted`);
         });
-    })
-
-    db.close((err) => {
+    }).close((err) => {
         if (err) {
             return console.error(err.message);
         }
