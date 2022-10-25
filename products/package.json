@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "scripts": {
     "build": "rimraf ./build && tsc && copy .\\protos\\products.proto .\\build",
-    "client": "npm run build && node build/products_client.js",
-    "server": "npm run build && node build/products_server.js"
+    "start": "npm run build && node build/products.js"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.1.0",
     "@grpc/proto-loader": "^0.5.0",
     "google-protobuf": "^3.0.0",
+    "jsonwebtoken": "^8.5.1",
     "sqlite3": "^5.1.2"
   },
   "devDependencies": {
