@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option csharp_namespace = "MicroProducts.Protos";
+option java_multiple_files = true;
+
+package products;
+
+import "google/protobuf/empty.proto";
+
+service Products {
+  rpc List(google.protobuf.Empty) returns (ProductListReply);
+
+  rpc Get (ProductIdRequest) returns (ProductReply);
+
+  rpc Create (ProductRequest) returns (ProductReply);
+
+  rpc Update (ProductRequest) returns (ProductReply);
+
+  rpc Delete (ProductIdRequest) returns (ProductReply);
+}
+
+message ProductIdRequest {
+  int32 id = 1;
+}
+
+message ProductRequest {
+  int32 id = 1;
+  string name = 2;
+}
+
+message ProductReply {
+  int32 id = 1;
+  string name = 2;
+}
+
+message ProductListReply {
+  repeated ProductReply products = 1;
+}

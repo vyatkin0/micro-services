@@ -20,9 +20,6 @@ namespace MicroFrontendProxy
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IdentityProvider>();
-            services.AddScoped<OrdersProvider>();
-
             services.AddCors(options =>
             {
                 options.AddPolicy(name: _corsPolicy,

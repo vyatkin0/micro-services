@@ -2,8 +2,8 @@
   "name": "micro-products",
   "version": "0.0.1",
   "scripts": {
-    "build": "rimraf ./build && tsc && copy .\\protos\\products.proto .\\build",
-    "start": "npm run build && node build/products.js"
+    "build": "rimraf ./build && tsc && copy .\\protos\\Products\\products.proto .\\build",
+    "start": "npm run build && set TOKEN_KEY=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef&& set PORT=50051&& node build/products.js"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.1.0",

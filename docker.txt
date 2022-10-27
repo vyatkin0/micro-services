@@ -18,3 +18,10 @@ ng build
 docker build --progress=plain -t micro-frontend .
 docker tag micro-frontend gcr.io/micro-services-365416/frontend:latest
 docker push gcr.io/micro-services-365416/frontend:latest
+
+
+npm run build
+docker build --progress=plain -t micro-products .
+docker tag micro-products gcr.io/micro-services-365416/products:latest
+docker push gcr.io/micro-services-365416/products:latest
+docker run -t -i --rm -p 50051:50051 --env PORT=50051 --env TOKEN_KEY=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef micro-products sh

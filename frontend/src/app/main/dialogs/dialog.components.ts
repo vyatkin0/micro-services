@@ -271,8 +271,8 @@ export class DialogAddOrder implements OnInit {
 
   async ngOnInit() {
     try {
-      const response = await rpc('orders', 'products', 'list');
-      this.products = response.productList;
+      const response = await rpc('products', 'products', 'list');
+      this.products = response.products;
       this.selected = new Array(this.products.length);
       if (this.data.order) {
         this.data.order.data.orderProductList.forEach(item => {
@@ -340,7 +340,7 @@ export class DialogAddOrder implements OnInit {
     };
 
     this.saving = true;
-    try { 
+    try {
       this.lastResult = await this.data.saveOrder(order);
       this.dialogRef.close();
     }

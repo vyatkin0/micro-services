@@ -1,7 +1,7 @@
 import * as grpc from '@grpc/grpc-js';
+import * as jwt from 'jsonwebtoken';
 import * as protoLoader from '@grpc/proto-loader';
 import * as sqlite3 from 'sqlite3';
-import * as jwt from 'jsonwebtoken';
 
 const sqlite = sqlite3.verbose();
 
@@ -24,7 +24,10 @@ interface ProductsGrpcObject {
 const products_proto = grpc.loadPackageDefinition(packageDefinition).products as grpc.GrpcObject | ProductsGrpcObject;
 
 const dbName = 'products.db';
-const jwtSignKey = '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef';
+const jwtSignKey = process.env.TOKEN_KEY;
+const issuer = process.env.TOKEN_ISSUER||'https://github.com/vyatkin0/micro-services';
+const audience = process.env.TOKEN_AUDIENCE||'https://github.com/vyatkin0/micro-services';
+
 const claimMsRole = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
 
 function authCall(call, callback, roles: string[] = []) {
@@ -32,10 +35,16 @@ function authCall(call, callback, roles: string[] = []) {
     for (const auth of authorizations) {
         const bearer = 'Bearer ';
         if (auth.startsWith(bearer)) {
-            const decoded = jwt.verify(auth.substring(bearer.length), jwtSignKey, { audience: 'https://github.com/vyatkin0/micro-services', issuer: 'https://github.com/vyatkin0/micro-services' });
+            const decoded = jwt.verify(auth.substring(bearer.length), jwtSignKey, { audience, issuer });
             console.log(decoded);
-            if (decoded[claimMsRole] && decoded[claimMsRole].some(r => ['Admin', ...roles].includes(r))) {
-                return decoded;
+            if (decoded[claimMsRole])
+            {
+                if(Array.isArray(decoded[claimMsRole])
+                    && decoded[claimMsRole].some(r => ['Admin', ...roles].includes(r))
+                    || ['Admin', ...roles].includes(decoded[claimMsRole]))
+                {
+                    return decoded;
+                }
             }
 
             callback({
@@ -233,7 +242,7 @@ function seedSqlite() {
     db.serialize(() => {
         db.run('DROP TABLE IF EXISTS products')
             .run('CREATE TABLE products(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT)')
-            .run('INSERT INTO products(name) VALUES (?), (?), (?), (?), (?)', ['Mouse', 'Keyboard', 'Display', 'Notebook', 'Phone'], function (err) {
+            .run('INSERT INTO products(name) VALUES (?), (?), (?), (?), (?)', ['Notebook', 'Monitor', 'Mouse', 'Keyboard', 'Phone'], function (err) {
                 if (err) {
                     throw err;
                 }
@@ -249,12 +258,12 @@ function seedSqlite() {
 }
 
 function main() {
-    seedSqlite();
-
-    const target = '0.0.0.0:50051';
+    const target = `0.0.0.0:${process.env.PORT||8080}`;
     const server = new grpc.Server();
     server.addService(products_proto.Products.service, { list, get, create, update, delete: deleteProduct });
+
     server.bindAsync(target, grpc.ServerCredentials.createInsecure(), () => {
+        seedSqlite();
         server.start();
     });
 
