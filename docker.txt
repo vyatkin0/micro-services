@@ -13,6 +13,10 @@ docker build --progress=plain -t micro-orders .
 docker tag micro-orders gcr.io/micro-services-365416/orders:latest
 docker push gcr.io/micro-services-365416/orders:latest
 
+dotnet publish -c Release
+docker build --progress=plain -t micro-frontend-proxy .
+docker tag micro-frontend-proxy gcr.io/micro-services-365416/frontend-proxy:latest
+docker push gcr.io/micro-services-365416/frontend-proxy:latest
 
 ng build
 docker build --progress=plain -t micro-frontend .
